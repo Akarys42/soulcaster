@@ -1,29 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "soulcaster",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Soulcaster",
+  "description": "TODO",
   "authors": [
-    "Me!"
+    "Amber Bertucci <amber@akarys.me>"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://git.akarys.me/soulcaster"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "MIT",
+  "icon": "assets/soulcaster/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "me.akarys.soulcaster.SoulcasterMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "soulcaster.mixins.json"
   ],
 
   "depends": {
@@ -31,8 +30,5 @@
     "fabric": "*",
     "minecraft": "~1.19",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
