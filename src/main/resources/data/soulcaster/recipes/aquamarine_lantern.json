@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SCS",
+    "CAC",
+    "SCS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:prismarine_shard"
+    },
+    "C": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "A": {
+      "item": "soulcaster:aquamarine"
+    }
+  },
+  "result": {
+    "item": "soulcaster:aquamarine_lantern",
+    "count": 1
+  }
+}

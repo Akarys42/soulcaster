@@ -6,7 +6,7 @@
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "OceanMonumentCoreRoomMixin"
   ],
   "injectors": {
     "defaultRequire": 1
