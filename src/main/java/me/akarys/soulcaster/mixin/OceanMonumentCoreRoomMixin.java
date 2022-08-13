@@ -9,8 +9,6 @@ import net.minecraft.structure.StructurePieceType;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.world.StructureWorldAccess;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import java.util.Random;
 
