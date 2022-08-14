@@ -1,5 +1,6 @@
 package me.akarys.soulcaster;
 
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -10,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.block.OreBlock;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -20,6 +22,7 @@ import net.minecraft.structure.rule.AlwaysTrueRuleTest;
 import net.minecraft.structure.rule.RandomBlockMatchRuleTest;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -39,8 +42,10 @@ import java.util.List;
 
 import static net.minecraft.world.gen.feature.OreConfiguredFeatures.*;
 
-public class SoulcasterMod implements ModInitializer {
+public class SoulcasterMod implements ModInitializer, ClientModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("soulcaster");
+
+	public static final Item SOUL_CATALYST = new SoulCatalyst(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.RARE).maxCount(1));
 
 	public static final Block AQUAMARINE_LANTERN = new Block(FabricBlockSettings.of(Material.GLASS).strength(0.3F, 0.3F).luminance(15));
 	public static final Item AQUAMARINE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
@@ -62,6 +67,8 @@ public class SoulcasterMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		Registry.register(Registry.ITEM, new Identifier("soulcaster", "soul_catalyst"), SOUL_CATALYST);
+
 		Registry.register(Registry.BLOCK, new Identifier("soulcaster", "aquamarine_lantern"), AQUAMARINE_LANTERN);
 		Registry.register(Registry.ITEM, new Identifier("soulcaster", "aquamarine_lantern"), new BlockItem(AQUAMARINE_LANTERN, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 		Registry.register(Registry.ITEM, new Identifier("soulcaster", "aquamarine"), AQUAMARINE);
@@ -98,5 +105,10 @@ public class SoulcasterMod implements ModInitializer {
 				);
 			}
 		});
+	}
+
+	@Override
+	public void onInitializeClient() {
+		ModelPredicateProviderRegistry.register(SOUL_CATALYST, new Identifier("fill"), (itemStack, clientWorld, livingEntity, i) -> ((SoulCatalyst) itemStack.getItem()).getFill(itemStack));
 	}
 }

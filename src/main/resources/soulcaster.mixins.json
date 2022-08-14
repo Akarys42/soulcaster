@@ -4,6 +4,7 @@
   "package": "me.akarys.soulcaster.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "HostileEntityMixin",
     "OceanMonumentCoreRoomMixin"
   ],
   "injectors": {

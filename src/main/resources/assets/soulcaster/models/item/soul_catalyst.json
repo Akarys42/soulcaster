@@ -1,0 +1,95 @@
+{
+  "parent": "item/generated",
+  "overrides": [
+    {
+      "predicate": {
+        "fill": 0
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_00"
+    },
+    {
+      "predicate": {
+        "fill": 0.067
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_01"
+    },
+    {
+      "predicate": {
+        "fill": 0.133
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_02"
+    },
+    {
+      "predicate": {
+        "fill": 0.2
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_03"
+    },
+    {
+      "predicate": {
+        "fill": 0.267
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_04"
+    },
+    {
+      "predicate": {
+        "fill": 0.333
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_05"
+    },
+    {
+      "predicate": {
+        "fill": 0.4
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_06"
+    },
+    {
+      "predicate": {
+        "fill": 0.467
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_07"
+    },
+    {
+      "predicate": {
+        "fill": 0.533
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_08"
+    },
+    {
+      "predicate": {
+        "fill": 0.6
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_09"
+    },
+    {
+      "predicate": {
+        "fill": 0.667
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_10"
+    },
+    {
+      "predicate": {
+        "fill": 0.733
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_11"
+    },
+    {
+      "predicate": {
+        "fill": 0.8
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_12"
+    },
+    {
+      "predicate": {
+        "fill": 0.867
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_13"
+    },
+    {
+      "predicate": {
+        "fill": 0.933
+      },
+      "model": "soulcaster:item/soul_catalyst/soul_catalyst_14"
+    }
+  ]
+}

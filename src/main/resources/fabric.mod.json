@@ -19,6 +19,9 @@
   "entrypoints": {
     "main": [
       "me.akarys.soulcaster.SoulcasterMod"
+    ],
+    "client": [
+      "me.akarys.soulcaster.SoulcasterMod"
     ]
   },
   "mixins": [
