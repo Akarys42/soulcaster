@@ -46,6 +46,7 @@ public class SoulcasterMod implements ModInitializer, ClientModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("soulcaster");
 
 	public static final Item SOUL_CATALYST = new SoulCatalyst(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.RARE).maxCount(1));
+	public static final Item SOUL_CRYSTAL = new Item(new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.UNCOMMON));
 
 	public static final Block AQUAMARINE_LANTERN = new Block(FabricBlockSettings.of(Material.GLASS).strength(0.3F, 0.3F).luminance(15));
 	public static final Item AQUAMARINE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
@@ -68,6 +69,7 @@ public class SoulcasterMod implements ModInitializer, ClientModInitializer {
 	@Override
 	public void onInitialize() {
 		Registry.register(Registry.ITEM, new Identifier("soulcaster", "soul_catalyst"), SOUL_CATALYST);
+		Registry.register(Registry.ITEM, new Identifier("soulcaster", "soul_crystal"), SOUL_CRYSTAL);
 
 		Registry.register(Registry.BLOCK, new Identifier("soulcaster", "aquamarine_lantern"), AQUAMARINE_LANTERN);
 		Registry.register(Registry.ITEM, new Identifier("soulcaster", "aquamarine_lantern"), new BlockItem(AQUAMARINE_LANTERN, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
