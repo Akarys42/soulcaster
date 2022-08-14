@@ -67,12 +67,12 @@ public class SoulCatalyst extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(
-            Text.translatable("item.soulcaster.soul_catalyst.stored")
+            Text.translatable("item.soulcaster.soul_catalyst.energy")
                 .append(storedEnergy(stack).toString()).append(" / ")
                 .append(requiredEnergy(stack).toString())
         );
         tooltip.add(
-            Text.translatable("item.soulcaster.soul_catalyst.stored")
+            Text.translatable("item.soulcaster.soul_catalyst.crystals")
                 .append(storedCrystals(stack).toString())
         );
         tooltip.add(Text.translatable("item.soulcaster.soul_catalyst.extract"));

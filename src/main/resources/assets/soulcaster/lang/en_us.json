@@ -1,0 +1,19 @@
+{
+  "item.soulcaster.soul_catalyst": "Soul Catalyst",
+  "item.soulcaster.soul_catalyst.energy": "Stored energy: ",
+  "item.soulcaster.soul_catalyst.crystals": "Stored crystals: ",
+  "item.soulcaster.soul_catalyst.extract": "Right click to extract a crystal",
+
+  "block.soulcaster.aquamarine_lantern": "Aquamarine Lantern",
+  "item.soulcaster.aquamarine": "Aquamarine",
+
+  "block.soulcaster.ruby_ore": "Ruby Ore",
+  "block.soulcaster.deepslate_ruby_ore": "Deepslate Ruby Ore",
+  "item.soulcaster.ruby": "Ruby",
+
+  "block.soulcaster.topaz_ore": "Topaz Ore",
+  "item.soulcaster.topaz": "Topaz",
+
+  "block.soulcaster.deepslate_jade_ore": "Deepslate Jade Ore",
+  "item.soulcaster.jade": "Jade"
+}
