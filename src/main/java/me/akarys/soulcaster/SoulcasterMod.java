@@ -3,13 +3,20 @@ package me.akarys.soulcaster;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.structure.processor.RuleStructureProcessor;
+import net.minecraft.structure.processor.StructureProcessorList;
+import net.minecraft.structure.processor.StructureProcessorRule;
+import net.minecraft.structure.rule.AlwaysTrueRuleTest;
+import net.minecraft.structure.rule.RandomBlockMatchRuleTest;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
@@ -48,6 +55,9 @@ public class SoulcasterMod implements ModInitializer {
 	public static final PlacedFeature PLACED_TOPAZ_FEATURE = new PlacedFeature(RegistryEntry.of(CONFIGURED_TOPAZ_FEATURE), Arrays.asList(CountPlacementModifier.of(20), HeightRangePlacementModifier.trapezoid(YOffset.fixed(-80), YOffset.fixed(80))));
 	public static final Item TOPAZ = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 
+	public static final Block JADE_DEEPSLATE_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(4.5F, 3.0F).requiresTool());
+	public static final Item JADE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
+
 	@Override
 	public void onInitialize() {
 		Registry.register(Registry.BLOCK, new Identifier("soulcaster", "aquamarine_lantern"), AQUAMARINE_LANTERN);
@@ -69,5 +79,22 @@ public class SoulcasterMod implements ModInitializer {
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier("soulcaster", "ore_topaz"), CONFIGURED_TOPAZ_FEATURE);
 		Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier("soulcaster", "ore_topaz"), PLACED_TOPAZ_FEATURE);
 		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier("soulcaster", "ore_topaz")));
+
+		Registry.register(Registry.BLOCK, new Identifier("soulcaster", "deepslate_jade_ore"), JADE_DEEPSLATE_ORE);
+		Registry.register(Registry.ITEM, new Identifier("soulcaster", "deepslate_jade_ore"), new BlockItem(JADE_DEEPSLATE_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier("soulcaster", "jade"), JADE);
+
+		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
+			Registry<StructureProcessorList> processorListRegistry = server.getRegistryManager().get(Registry.STRUCTURE_PROCESSOR_LIST_KEY);
+			List<String> pathsToProcess = List.of("ancient_city_generic_degradation", "ancient_city_start_degradation", "ancient_city_walls_degradation");
+
+			for (String path : pathsToProcess) {
+				Utils.addNewRuleToProcessorList(
+					new Identifier("minecraft", path),
+					new RuleStructureProcessor(List.of(new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.DEEPSLATE_BRICKS, 0.005f), AlwaysTrueRuleTest.INSTANCE, JADE_DEEPSLATE_ORE.getDefaultState()))),
+					processorListRegistry
+				);
+			}
+		});
 	}
 }
