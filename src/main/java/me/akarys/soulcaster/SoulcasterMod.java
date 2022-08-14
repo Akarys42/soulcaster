@@ -28,8 +28,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Arrays;
 import java.util.List;
 
-import static net.minecraft.world.gen.feature.OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES;
-import static net.minecraft.world.gen.feature.OreConfiguredFeatures.STONE_ORE_REPLACEABLES;
+import static net.minecraft.world.gen.feature.OreConfiguredFeatures.*;
 
 public class SoulcasterMod implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("soulcaster");
@@ -43,6 +42,11 @@ public class SoulcasterMod implements ModInitializer {
 	public static final PlacedFeature PLACED_RUBY_FEATURE = new PlacedFeature(RegistryEntry.of(CONFIGURED_RUBY_FEATURE), Arrays.asList(CountPlacementModifier.of(100), HeightRangePlacementModifier.trapezoid(YOffset.fixed(-16), YOffset.fixed(480))));
 	public static final Item RUBY = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 	public static final TagKey<Biome> HAS_RUBY_ORE = TagKey.of(Registry.BIOME_KEY, new Identifier("soulcaster", "has_ruby_ore"));
+
+	public static final Block TOPAZ_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).requiresTool());
+	public static final ConfiguredFeature<?, ?> CONFIGURED_TOPAZ_FEATURE = new ConfiguredFeature(Feature.ORE, new OreFeatureConfig(List.of(OreFeatureConfig.createTarget(NETHERRACK, TOPAZ_ORE.getDefaultState())), 3));
+	public static final PlacedFeature PLACED_TOPAZ_FEATURE = new PlacedFeature(RegistryEntry.of(CONFIGURED_TOPAZ_FEATURE), Arrays.asList(CountPlacementModifier.of(20), HeightRangePlacementModifier.trapezoid(YOffset.fixed(-80), YOffset.fixed(80))));
+	public static final Item TOPAZ = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 
 	@Override
 	public void onInitialize() {
@@ -58,5 +62,12 @@ public class SoulcasterMod implements ModInitializer {
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier("soulcaster", "ore_ruby"), CONFIGURED_RUBY_FEATURE);
 		Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier("soulcaster", "ore_ruby"), PLACED_RUBY_FEATURE);
 		BiomeModifications.addFeature(BiomeSelectors.tag(HAS_RUBY_ORE), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier("soulcaster", "ore_ruby")));
+
+		Registry.register(Registry.BLOCK, new Identifier("soulcaster", "topaz_ore"), TOPAZ_ORE);
+		Registry.register(Registry.ITEM, new Identifier("soulcaster", "topaz_ore"), new BlockItem(TOPAZ_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+		Registry.register(Registry.ITEM, new Identifier("soulcaster", "topaz"), TOPAZ);
+		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier("soulcaster", "ore_topaz"), CONFIGURED_TOPAZ_FEATURE);
+		Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier("soulcaster", "ore_topaz"), PLACED_TOPAZ_FEATURE);
+		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier("soulcaster", "ore_topaz")));
 	}
 }
