@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
+import net.minecraft.block.OreBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -19,6 +20,7 @@ import net.minecraft.structure.rule.AlwaysTrueRuleTest;
 import net.minecraft.structure.rule.RandomBlockMatchRuleTest;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
@@ -43,19 +45,19 @@ public class SoulcasterMod implements ModInitializer {
 	public static final Block AQUAMARINE_LANTERN = new Block(FabricBlockSettings.of(Material.GLASS).strength(0.3F, 0.3F).luminance(15));
 	public static final Item AQUAMARINE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 
-	public static final Block RUBY_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).requiresTool());
-	public static final Block DEEPSLATE_RUBY_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(4.5F, 3.0F).requiresTool());
+	public static final Block RUBY_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).requiresTool(), UniformIntProvider.create(10, 15));
+	public static final Block DEEPSLATE_RUBY_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4.5F, 3.0F).requiresTool(), UniformIntProvider.create(10, 15));
 	public static final ConfiguredFeature<?, ?> CONFIGURED_RUBY_FEATURE = new ConfiguredFeature(Feature.ORE, new OreFeatureConfig(List.of(OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, RUBY_ORE.getDefaultState()), OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, DEEPSLATE_RUBY_ORE.getDefaultState())), 3));
 	public static final PlacedFeature PLACED_RUBY_FEATURE = new PlacedFeature(RegistryEntry.of(CONFIGURED_RUBY_FEATURE), Arrays.asList(CountPlacementModifier.of(100), HeightRangePlacementModifier.trapezoid(YOffset.fixed(-16), YOffset.fixed(480))));
 	public static final Item RUBY = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 	public static final TagKey<Biome> HAS_RUBY_ORE = TagKey.of(Registry.BIOME_KEY, new Identifier("soulcaster", "has_ruby_ore"));
 
-	public static final Block TOPAZ_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).requiresTool());
+	public static final Block TOPAZ_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).requiresTool(), UniformIntProvider.create(10, 15));
 	public static final ConfiguredFeature<?, ?> CONFIGURED_TOPAZ_FEATURE = new ConfiguredFeature(Feature.ORE, new OreFeatureConfig(List.of(OreFeatureConfig.createTarget(NETHERRACK, TOPAZ_ORE.getDefaultState())), 3));
 	public static final PlacedFeature PLACED_TOPAZ_FEATURE = new PlacedFeature(RegistryEntry.of(CONFIGURED_TOPAZ_FEATURE), Arrays.asList(CountPlacementModifier.of(20), HeightRangePlacementModifier.trapezoid(YOffset.fixed(-80), YOffset.fixed(80))));
 	public static final Item TOPAZ = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 
-	public static final Block JADE_DEEPSLATE_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(4.5F, 3.0F).requiresTool());
+	public static final Block JADE_DEEPSLATE_ORE = new OreBlock(FabricBlockSettings.of(Material.STONE).strength(4.5F, 3.0F).requiresTool(), UniformIntProvider.create(10, 15));
 	public static final Item JADE = new Item(new FabricItemSettings().group(ItemGroup.MISC));
 
 	@Override
