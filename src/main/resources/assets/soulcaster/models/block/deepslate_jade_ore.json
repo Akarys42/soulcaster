@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "minecraft:block/deepslate_emerald_ore"
+    "all": "soulcaster:block/deepslate_jade_ore"
   }
 }
