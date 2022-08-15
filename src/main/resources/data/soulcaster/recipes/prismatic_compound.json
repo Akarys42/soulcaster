@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:emerald"
+    },
+    {
+      "item": "minecraft:amethyst_cluster"
+    },
+    {
+      "item": "soulcaster:aquamarine"
+    },
+    {
+      "item": "soulcaster:ruby"
+    },
+    {
+      "item": "soulcaster:topaz"
+    },
+    {
+      "item": "soulcaster:jade"
+    }
+  ],
+  "result": {
+    "item": "soulcaster:prismatic_compound",
+    "count": 1
+  }
+}
